@@ -1,17 +1,17 @@
 import React from "react";
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from "./styles";
-import { Albuns, AlbunsProps } from "../../screens/Albuns";
-import { NavigationHelpersContext } from "@react-navigation/native";
+
 import { StackParamList } from "../../routes/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MusicaProps } from "../../screens/Musicas";
 
-interface CardAlbumProps {
-  navigate: NativeStackNavigationProp<StackParamList, "Album", undefined>,
-  item: AlbunsProps,
+interface CardMusicaProps {
+  navigate: NativeStackNavigationProp<StackParamList, "Musicas", undefined>,
+  item: MusicaProps,
 }
 
-export const CardAlbum = ({ item, navigate }: CardAlbumProps) => {
+export const CardMusica = ({ item, navigate }: CardMusicaProps) => {
 
 
   return <TouchableOpacity
@@ -19,20 +19,11 @@ export const CardAlbum = ({ item, navigate }: CardAlbumProps) => {
     style={styles.container}
     onPress={() => navigate.navigate("Musicas", { indexAlbum: item.id })}
   >
-    <View
-      style={styles.containerArtista}
-    >
       <Text
         style={styles.album}
       >
         {item.titulo}
       </Text>
-      <Text
-        style={styles.artista}
-      >
-        {item.nomeArtista}
-      </Text>
-    </View>
     <Text
       style={styles.duracao}
     >
