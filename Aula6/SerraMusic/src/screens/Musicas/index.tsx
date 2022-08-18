@@ -7,7 +7,7 @@ import { StackParamList } from "../../routes/routes";
 import { buscaDetalhesAlbum } from "../../services/api";
 import { styles } from "./styles";
 
-import GoBackIcon from '../../assets/icons/goback.png'
+import GoBackIcon from '../../assets/icons/goback.png';
 
 type MusicaScreenProps = NativeStackScreenProps<StackParamList,'Musicas'>;
 
@@ -32,6 +32,8 @@ export interface MusicaProps {
 export function Musicas({route, navigation}: MusicaScreenProps) {
 
     const [album,setAlbum] = useState<DetalhesAlbumProps>();
+    const [idAlbum, setIdAlbum] = useState<number>(0);
+    const [idMusica, setIdMusica] = useState<number>(0);
 
     useEffect(()=>{
         buscaDetalhesAlbum(route.params.indexAlbum).then((res)=>{
@@ -67,7 +69,7 @@ export function Musicas({route, navigation}: MusicaScreenProps) {
             <FlatList
                 data={album.musicas}
                 renderItem={({item})=>{
-                    return <CardMusica item={item} navigate={navigation}/>
+                    return <CardMusica setIdMusica={setIdMusica} setIdAlbum={setIdAlbum} item={item} navigate={navigation}/>
                 }}
             />
         </> : <Text style={styles.titulo}>Carregando...</Text>}

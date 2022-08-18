@@ -9,15 +9,21 @@ import { MusicaProps } from "../../screens/Musicas";
 interface CardMusicaProps {
   navigate: NativeStackNavigationProp<StackParamList, "Musicas", undefined>,
   item: MusicaProps,
+  setIdMusica: React.Dispatch<React.SetStateAction<number>>,
+  setIdAlbum: React.Dispatch<React.SetStateAction<number>>,
 }
 
-export const CardMusica = ({ item, navigate }: CardMusicaProps) => {
+export const CardMusica = ({ item, setIdAlbum, setIdMusica }: CardMusicaProps) => {
 
+  function handleSelecionaMusica () {
+    setIdAlbum(item.idAlbum)
+    setIdMusica(item.id)
+  }
 
   return <TouchableOpacity
     activeOpacity={0.7}
     style={styles.container}
-    onPress={() => navigate.navigate("Musicas", { indexAlbum: item.id })}
+    onPress={() => handleSelecionaMusica()}
   >
       <Text
         style={styles.album}
